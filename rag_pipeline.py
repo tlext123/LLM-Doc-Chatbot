@@ -26,7 +26,7 @@ def split_text_dynamically(text: str):
     chunk_size, overlap = get_dynamic_chunk_params(text)
     splitter = RecursiveCharacterTextSplitter(
         chunk_size = chunk_size,
-        overlap = overlap
+        chunk_overlap = overlap
     )
     return splitter.split_text(text)
 

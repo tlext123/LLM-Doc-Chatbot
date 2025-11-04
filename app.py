@@ -13,7 +13,7 @@ st.title('PDF Analysis Chatbot')
 st.sidebar.header("Chat history")
 if st.session_state.chat_history:
     for chat in reversed(st.session_state.chat_history):
-        st.sidebar.markdown(f"**you:** {chat['question']}")
+        st.sidebar.markdown(f"**User:** {chat['question']}")
         st.sidebar.markdown(f"**Bot:** {chat['answer']}")
         st.sidebar.markdown("---")
 

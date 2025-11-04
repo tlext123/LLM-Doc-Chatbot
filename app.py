@@ -1,10 +1,26 @@
 import streamlit as st
 from rag_pipeline import answer_question_from_pdf, clean_text
 
+
+
+st.set_page_config(page_title="PDF Analysis Chatbot", layout='wide')
+
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
 st.title('PDF Analysis Chatbot')
 
-pdf_file = st.file_uploader('Please submit a PDF for analysis', type=['pdf'])
+st.sidebar.header("Chat history")
+if st.session_state.chat_history:
+    for i, chat in enumerate(st.session_state.chat_history[::-1]):
+        st.sidebar.markdown(f"**you:** {chat['question']}")
+        st.sidebar.markdown(f"**Bot:** {chat['answer']}")
+        st.sidebar.markdown("---")
 
+else:
+    st.sidebar.info("No chat history. Ask a question.")
+
+pdf_file = st.file_uploader('Please submit a PDF for analysis', type=['pdf'])
 question = st.text_input('What would you like to know?')
 
 
